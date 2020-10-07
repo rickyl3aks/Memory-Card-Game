@@ -7,7 +7,6 @@
 body {
   background: linear-gradient(95deg, #5347ff, #7e64af);
   height: 100vh;
-  display: flex;
 }
 
 img {
@@ -17,16 +16,12 @@ img {
 .memory-game {
   width: 650px;
   height: 650px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin: auto;
-  perspective: 900px;
 }
 
 .memory-card {
-  position: relative;
-  width: calc(25% - 10px);
-  height: calc(33.333% - 10px);
   margin: 5px;
   transform: scale(1);
   transform-style: preserve-3d;
@@ -56,4 +51,15 @@ img {
 
 .front-face {
   transform: rotateY(180deg);
+}
+
+/*response for Iphone*/
+
+@media only screen and (max-width: 500px) {
+  .memory-game {
+    width: 550px;
+    height: 550px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
