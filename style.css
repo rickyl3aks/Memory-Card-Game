@@ -75,7 +75,7 @@ h3 {
     height: 550px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin: auto 1rem;
+    margin: 0 0.2rem;
   }
   .front-face,
   .back-face {
