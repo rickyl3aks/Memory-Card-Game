@@ -17,15 +17,8 @@ h3 {
   margin: 3rem;
 }
 
-<<<<<<< HEAD
 .grid {
   margin: auto;
-=======
-.memory-game {
-  position: relative;
-  width: 650px;
-  height: 650px;
->>>>>>> 5773cb3 (response phone)
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: wrap;
@@ -49,35 +42,5 @@ h3 {
   .grid {
     display: flex;
     justify-content: center;
-  }
-}
-
-/*response for Iphone*/
-
-@media only screen and (max-width: 500px) {
-  .memory-game {
-    width: 250px;
-    height: 550px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .front-face,
-  .back-face {
-    padding: 5px;
-  }
-}
-
-/*response for Iphone*/
-
-@media only screen and (max-width: 500px) {
-  .memory-game {
-    width: 250px;
-    height: 550px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .front-face,
-  .back-face {
-    padding: 5px;
   }
 }
