@@ -17,8 +17,15 @@ h3 {
   margin: 3rem;
 }
 
+<<<<<<< HEAD
 .grid {
   margin: auto;
+=======
+.memory-game {
+  position: relative;
+  width: 650px;
+  height: 650px;
+>>>>>>> 5773cb3 (response phone)
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   flex-wrap: wrap;
@@ -64,9 +71,14 @@ h3 {
 
 @media only screen and (max-width: 500px) {
   .memory-game {
-    width: 550px;
+    width: 250px;
     height: 550px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    margin: auto 1rem;
+  }
+  .front-face,
+  .back-face {
+    padding: 5px;
   }
 }
