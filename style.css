@@ -38,7 +38,7 @@ h3 {
   cursor: not-allowed;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (max-device-width: 480px) {
   .grid {
     display: flex;
     justify-content: center;
