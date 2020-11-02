@@ -1,71 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap");
+
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background: linear-gradient(95deg, #5347ff, #7e64af);
-  height: 100vh;
+  background: linear-gradient(to right, tomato, grey);
+  background-attachment: fixed;
 }
 
-img {
-  width: 100px;
+h3 {
+  text-align: center;
+  font-family: "Syne Mono", monospace;
+  margin: 3rem;
 }
 
-.memory-game {
-  position: relative;
-  width: 650px;
-  height: 650px;
+.grid {
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin: auto;
+  flex-wrap: wrap;
+  grid-gap: 0.3rem;
+  justify-content: center;
+  width: 400px;
 }
 
-.memory-card {
-  margin: 5px;
-  transform: scale(1);
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
+.image {
+  border: 2px solid #fff;
   cursor: pointer;
+  width: 100px;
+  height: 100px;
 }
 
-.memory-card:active {
-  transform: scale(0.97);
-  transition: transform 0.2s;
+.no-click {
+  cursor: not-allowed;
 }
 
-.memory-card.flip {
-  transform: rotateY(180deg);
-}
-
-.front-face,
-.back-face {
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  position: absolute;
-  border-radius: 8px;
-  border: 5px solid#381f24;
-  background: #ff4747;
-  backface-visibility: hidden;
-}
-
-.front-face {
-  transform: rotateY(180deg);
-}
-
-/*response for Iphone*/
-
-@media only screen and (max-width: 500px) {
-  .memory-game {
-    width: 250px;
-    height: 550px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .front-face,
-  .back-face {
-    padding: 5px;
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .grid {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -1,60 +1,127 @@
-const cards = document.querySelectorAll(".memory-card");
+const cardArray = [
+  {
+    name: "horseshoes",
+    img: "images/horseshoes.jpg",
+  },
+  {
+    name: "horseshoes",
+    img: "images/horseshoes.jpg",
+  },
+  {
+    name: "cassette_tape",
+    img: "images/cassette_tape.jpg",
+  },
+  {
+    name: "cassette_tape",
+    img: "images/cassette_tape.jpg",
+  },
+  {
+    name: "cat_color",
+    img: "images/cat_color.jpg",
+  },
+  {
+    name: "cat_color",
+    img: "images/cat_color.jpg",
+  },
+  {
+    name: "clock2",
+    img: "images/clock2.jpg",
+  },
+  {
+    name: "clock2",
+    img: "images/clock2.jpg",
+  },
+  {
+    name: "dmc",
+    img: "images/dmc.jpg",
+  },
+  {
+    name: "dmc",
+    img: "images/dmc.jpg",
+  },
+  {
+    name: "ps4",
+    img: "images/ps4.jpg",
+  },
+  {
+    name: "ps4",
+    img: "images/ps4.jpg",
+  },
+  {
+    name: "sorbet2",
+    img: "images/sorbet2.jpg",
+  },
+  {
+    name: "sorbet2",
+    img: "images/sorbet2.jpg",
+  },
+  {
+    name: "us",
+    img: "images/us.jpg",
+  },
+  {
+    name: "us",
+    img: "images/us.jpg",
+  },
+];
 
-let hasFlippedCard = false;
-let lockBoard = false;
-let firstCard, secondCard;
+cardArray.sort(() => 0.5 - Math.random());
 
-function flipCard() {
-  if (lockBoard) return;
-  if (this === firstCard) return;
+const grid = document.querySelector(".grid");
+const resultDisplay = document.querySelector("#result");
+var cardsChosen = [];
+var cardsChosenId = [];
+const cardsWon = [];
 
-  this.classList.add("flip");
-
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstCard = this;
-
-    return;
+//create your board
+function createBoard() {
+  for (let i = 0; i < cardArray.length; i++) {
+    var card = document.createElement("img");
+    card.classList.add("image");
+    card.setAttribute("src", "images/card_back.jpg");
+    card.setAttribute("data-id", i);
+    card.addEventListener("click", flipCard);
+    grid.appendChild(card);
   }
-
-  secondCard = this;
-  checkForMatch();
 }
 
+//check for matches
 function checkForMatch() {
-  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
+  var cards = document.querySelectorAll("img");
+  const optionOneId = cardsChosenId[0];
+  const optionTwoId = cardsChosenId[1];
 
-  isMatch ? disableCards() : unflipCards();
+  if (optionOneId == optionTwoId) {
+    cards[optionOneId].setAttribute("src", "images/card_back.jpg");
+    cards[optionTwoId].setAttribute("src", "images/card_back.jpg");
+  } else if (cardsChosen[0] === cardsChosen[1]) {
+    cards[optionOneId].removeEventListener("click", flipCard);
+    cards[optionTwoId].removeEventListener("click", flipCard);
+    cards[optionOneId].classList.add("no-click");
+    cards[optionTwoId].classList.add("no-click");
+    cardsWon.push(cardsChosen);
+  } else {
+    cards[optionOneId].setAttribute("src", "images/card_back.jpg");
+    cards[optionTwoId].setAttribute("src", "images/card_back.jpg");
+  }
+  cardsChosen = [];
+  cardsChosenId = [];
+  resultDisplay.textContent = cardsWon.length;
+  if (cardsWon.length === cardArray.length / 2) {
+    resultDisplay.textContent = "Congratulations! You found them all!";
+  }
 }
 
-function disableCards() {
-  firstCard.removeEventListener("click", flipCard);
-  secondCard.removeEventListener("click", flipCard);
+//flip your card
+function flipCard() {
+  var cardId = this.getAttribute("data-id");
+  cardsChosen.push(cardArray[cardId].name);
 
-  resetBoard();
+  cardsChosenId.push(cardId);
+  this.setAttribute("src", cardArray[cardId].img);
+  if (cardsChosen.length === 2) {
+    setTimeout(checkForMatch, 800);
+  }
 }
 
-function unflipCards() {
-  lockBoard = true;
-
-  setTimeout(() => {
-    firstCard.classList.remove("flip");
-    secondCard.classList.remove("flip");
-
-    resetBoard();
-  }, 1500);
-}
-
-function resetBoard() {
-  [hasFlippedCard, lockBoard] = [false, false];
-  [firstCard, secondCard] = [null, null];
-}
-
-(function shuffle() {
-  cards.forEach((card) => {
-    let randomPos = Math.floor(Math.random() * 12);
-    card.style.order = randomPos;
-  });
-})();
-
-cards.forEach((card) => card.addEventListener("click", flipCard));
+createBoard();
