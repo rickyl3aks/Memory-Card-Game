@@ -9,8 +9,6 @@
 body {
   background: linear-gradient(to right, tomato, grey);
   background-attachment: fixed;
-  background: linear-gradient(95deg, #5347ff, #7e64af);
-  height: 100vh;
 }
 
 h3 {
