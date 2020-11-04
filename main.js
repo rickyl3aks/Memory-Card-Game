@@ -1,35 +1,35 @@
 const cardArray = [
   {
-    name: "horseshoes",
-    img: "images/horseshoes.jpg",
+    name: "adidas",
+    img: "images/adidas.jpg",
   },
   {
-    name: "horseshoes",
-    img: "images/horseshoes.jpg",
-  },
-  {
-    name: "cassette_tape",
-    img: "images/cassette_tape.jpg",
+    name: "adidas",
+    img: "images/adidas.jpg",
   },
   {
     name: "cassette_tape",
     img: "images/cassette_tape.jpg",
   },
   {
-    name: "cat_color",
-    img: "images/cat_color.jpg",
+    name: "cassette_tape",
+    img: "images/cassette_tape.jpg",
   },
   {
-    name: "cat_color",
-    img: "images/cat_color.jpg",
+    name: "cards",
+    img: "images/cards.jpg",
   },
   {
-    name: "clock2",
-    img: "images/clock2.jpg",
+    name: "cards",
+    img: "images/cards.jpg",
   },
   {
-    name: "clock2",
-    img: "images/clock2.jpg",
+    name: "horseshoes",
+    img: "images/horseshoes.jpg",
+  },
+  {
+    name: "horseshoes",
+    img: "images/horseshoes.jpg",
   },
   {
     name: "dmc",
@@ -40,20 +40,20 @@ const cardArray = [
     img: "images/dmc.jpg",
   },
   {
-    name: "ps4",
-    img: "images/ps4.jpg",
+    name: "bow",
+    img: "images/bow.jpg",
   },
   {
-    name: "ps4",
-    img: "images/ps4.jpg",
+    name: "bow",
+    img: "images/bow.jpg",
   },
   {
-    name: "sorbet2",
-    img: "images/sorbet2.jpg",
+    name: "ballerina",
+    img: "images/ballerina.jpg",
   },
   {
-    name: "sorbet2",
-    img: "images/sorbet2.jpg",
+    name: "ballerina",
+    img: "images/ballerina.jpg",
   },
   {
     name: "us",
@@ -90,10 +90,11 @@ function checkForMatch() {
   var cards = document.querySelectorAll("img");
   const optionOneId = cardsChosenId[0];
   const optionTwoId = cardsChosenId[1];
-
+  //clicked wrong match
   if (optionOneId == optionTwoId) {
     cards[optionOneId].setAttribute("src", "images/card_back.jpg");
     cards[optionTwoId].setAttribute("src", "images/card_back.jpg");
+    //clicked right match
   } else if (cardsChosen[0] === cardsChosen[1]) {
     cards[optionOneId].removeEventListener("click", flipCard);
     cards[optionTwoId].removeEventListener("click", flipCard);
@@ -108,7 +109,7 @@ function checkForMatch() {
   cardsChosenId = [];
   resultDisplay.textContent = cardsWon.length;
   if (cardsWon.length === cardArray.length / 2) {
-    resultDisplay.textContent = "Congratulations! You found them all!";
+    resultDisplay.textContent = "Congratulations! You found them all! 💯";
   }
 }
 
@@ -116,11 +117,13 @@ function checkForMatch() {
 function flipCard() {
   var cardId = this.getAttribute("data-id");
   cardsChosen.push(cardArray[cardId].name);
-
   cardsChosenId.push(cardId);
   this.setAttribute("src", cardArray[cardId].img);
   if (cardsChosen.length === 2) {
     setTimeout(checkForMatch, 800);
+    //prevent user from clicking multiple times
+  } else if (cardsChosen.length > 2) {
+    this.setAttribute("src", "images/card_back.jpg");
   }
 }
 

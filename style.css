@@ -38,9 +38,13 @@ h3 {
   cursor: not-allowed;
 }
 
-@media only screen and (max-device-width: 480px) {
+@media only screen and (orientation: portrait) {
   .grid {
-    display: flex;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    width: 200px;
+  }
+
+  .image:nth-last-child(1):nth-child(even) {
+    grid-column: 2 / span 1;
   }
 }
