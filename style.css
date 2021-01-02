@@ -7,13 +7,8 @@
 }
 
 body {
-<<<<<<< HEAD
   background: linear-gradient(to right, tomato, grey);
   background-attachment: fixed;
-=======
-  background: linear-gradient(95deg, #5347ff, #7e64af);
-  height: 100vh;
->>>>>>> 4b4de891fab4811a2d001f516abbfce7840ae860
 }
 
 h3 {
@@ -22,7 +17,6 @@ h3 {
   margin: 3rem;
 }
 
-<<<<<<< HEAD
 .grid {
   margin: auto;
   display: grid;
@@ -31,28 +25,6 @@ h3 {
   grid-gap: 0.3rem;
   justify-content: center;
   width: 400px;
-=======
-.memory-game {
-  position: relative;
-  width: 650px;
-  height: 650px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin: auto;
-}
-
-.memory-card {
-  margin: 5px;
-  transform: scale(1);
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-  cursor: pointer;
-}
-
-.memory-card:active {
-  transform: scale(0.97);
-  transition: transform 0.2s;
->>>>>>> 4b4de891fab4811a2d001f516abbfce7840ae860
 }
 
 .image {
@@ -66,24 +38,13 @@ h3 {
   cursor: not-allowed;
 }
 
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+@media only screen and (orientation: portrait) {
   .grid {
-    display: flex;
-    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+    width: 200px;
   }
-}
 
-/*response for Iphone*/
-
-@media only screen and (max-width: 500px) {
-  .memory-game {
-    width: 250px;
-    height: 550px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .front-face,
-  .back-face {
-    padding: 5px;
+  .image:nth-last-child(1):nth-child(even) {
+    grid-column: 2 / span 1;
   }
 }
