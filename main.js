@@ -118,7 +118,7 @@ function checkForMatch() {
   cardsChosenId = [];
   resultDisplay.textContent = cardsWon.length;
   if (cardsWon.length === cardArray.length / 2) {
-    resultDisplay.textContent = "Congratulations! You found them all!";
+    resultDisplay.textContent = "You Win!! 🥳 💯";
   }
 }
 
