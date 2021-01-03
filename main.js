@@ -1,4 +1,28 @@
-/* const cardArray = [
+const cardArray = [
+  {
+    name: "adidas",
+    img: "images/adidas.jpg",
+  },
+  {
+    name: "adidas",
+    img: "images/adidas.jpg",
+  },
+  {
+    name: "cassette_tape",
+    img: "images/cassette_tape.jpg",
+  },
+  {
+    name: "cassette_tape",
+    img: "images/cassette_tape.jpg",
+  },
+  {
+    name: "cards",
+    img: "images/cards.jpg",
+  },
+  {
+    name: "cards",
+    img: "images/cards.jpg",
+  },
   {
     name: "horseshoes",
     img: "images/horseshoes.jpg",
@@ -6,30 +30,6 @@
   {
     name: "horseshoes",
     img: "images/horseshoes.jpg",
-  },
-  {
-    name: "cassette_tape",
-    img: "images/cassette_tape.jpg",
-  },
-  {
-    name: "cassette_tape",
-    img: "images/cassette_tape.jpg",
-  },
-  {
-    name: "cat_color",
-    img: "images/cat_color.jpg",
-  },
-  {
-    name: "cat_color",
-    img: "images/cat_color.jpg",
-  },
-  {
-    name: "clock2",
-    img: "images/clock2.jpg",
-  },
-  {
-    name: "clock2",
-    img: "images/clock2.jpg",
   },
   {
     name: "dmc",
@@ -40,42 +40,32 @@
     img: "images/dmc.jpg",
   },
   {
-    name: "ps4",
-    img: "images/ps4.jpg",
+    name: "bow",
+    img: "images/bow.jpg",
   },
   {
-    name: "ps4",
-    img: "images/ps4.jpg",
+    name: "bow",
+    img: "images/bow.jpg",
   },
   {
-    name: "sorbet2",
-    img: "images/sorbet2.jpg",
+    name: "ballerina",
+    img: "images/ballerina.jpg",
   },
   {
-    name: "sorbet2",
-    img: "images/sorbet2.jpg",
-  },
-  {
-    name: "us",
-    img: "images/us.jpg",
+    name: "ballerina",
+    img: "images/ballerina.jpg",
   },
   {
     name: "us",
     img: "images/us.jpg",
   },
-]; */
+  {
+    name: "us",
+    img: "images/us.jpg",
+  },
+];
 
-const cardArray = async () => {
-  try {
-    const res = await fetch("cardArray.json");
-    const data = await res.json();
-    console.log(data);
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-cardArray().sort(() => 0.5 - Math.random());
+cardArray.sort(() => 0.5 - Math.random());
 
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector("#result");
@@ -85,7 +75,7 @@ const cardsWon = [];
 
 //create your board
 function createBoard() {
-  for (let i = 0; i < cardArray().length; i++) {
+  for (let i = 0; i < cardArray.length; i++) {
     var card = document.createElement("img");
     card.classList.add("image");
     card.setAttribute("src", "images/card_back.jpg");
@@ -100,10 +90,11 @@ function checkForMatch() {
   var cards = document.querySelectorAll("img");
   const optionOneId = cardsChosenId[0];
   const optionTwoId = cardsChosenId[1];
-
+  //clicked wrong match
   if (optionOneId == optionTwoId) {
     cards[optionOneId].setAttribute("src", "images/card_back.jpg");
     cards[optionTwoId].setAttribute("src", "images/card_back.jpg");
+    //clicked right match
   } else if (cardsChosen[0] === cardsChosen[1]) {
     cards[optionOneId].removeEventListener("click", flipCard);
     cards[optionTwoId].removeEventListener("click", flipCard);
@@ -126,11 +117,13 @@ function checkForMatch() {
 function flipCard() {
   var cardId = this.getAttribute("data-id");
   cardsChosen.push(cardArray[cardId].name);
-
   cardsChosenId.push(cardId);
   this.setAttribute("src", cardArray[cardId].img);
   if (cardsChosen.length === 2) {
     setTimeout(checkForMatch, 800);
+    //prevent user from clicking multiple times
+  } else if (cardsChosen.length > 2) {
+    this.setAttribute("src", "images/card_back.jpg");
   }
 }
 
