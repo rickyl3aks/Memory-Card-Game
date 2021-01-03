@@ -1,4 +1,4 @@
-const cardArray = [
+/* const cardArray = [
   {
     name: "horseshoes",
     img: "images/horseshoes.jpg",
@@ -63,9 +63,19 @@ const cardArray = [
     name: "us",
     img: "images/us.jpg",
   },
-];
+]; */
 
-cardArray.sort(() => 0.5 - Math.random());
+const cardArray = async () => {
+  try {
+    const res = await fetch("cardArray.json");
+    const data = await res.json();
+    console.log(data);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+cardArray().sort(() => 0.5 - Math.random());
 
 const grid = document.querySelector(".grid");
 const resultDisplay = document.querySelector("#result");
@@ -75,7 +85,7 @@ const cardsWon = [];
 
 //create your board
 function createBoard() {
-  for (let i = 0; i < cardArray.length; i++) {
+  for (let i = 0; i < cardArray().length; i++) {
     var card = document.createElement("img");
     card.classList.add("image");
     card.setAttribute("src", "images/card_back.jpg");
