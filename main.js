@@ -20,6 +20,16 @@ const img = async () => {
     card.addEventListener("click", flipCard);
     grid.appendChild(card);
   }
+
+  /*   data.forEach((img) => {
+    console.log(img);
+    let card = document.createElement("img");
+    card.classList.add("image");
+    card.setAttribute("src", "images/card_back.jpg");
+    card.setAttribute("data-id", img);
+    card.addEventListener("click", flipCard);
+    grid.appendChild(card);
+  }); */
   //check for matches
   checkForMatch = () => {
     let cards = document.querySelectorAll("img");
@@ -43,15 +53,16 @@ const img = async () => {
     cardsChosen = [];
     cardsChosenId = [];
     resultDisplay.textContent = cardsWon.length;
-    if (cardsWon.length === data.length / 2) {
-      resultDisplay.textContent = "You Win!! 🥳 💯";
-    }
+    cardsWon.length === data.length / 2
+      ? (resultDisplay.textContent = "You Win!! 🥳 💯")
+      : null;
   };
 
   //flip your card
   function flipCard() {
     var cardId = this.getAttribute("data-id");
     cardsChosen.push(data[cardId].name);
+    console.log(cardsChosen);
     cardsChosenId.push(cardId);
     this.setAttribute("src", data[cardId].img);
     if (cardsChosen.length === 2) {
